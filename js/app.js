@@ -60,20 +60,18 @@ function shuffle(array) {
 let cardsRevealed = 0;
 let listOfRevealedCards = [];
 deck.addEventListener("click", function(evt) {
-    if (cardsRevealed < 2) {
-        if (!evt.target.classList.contains("show")) {
-            evt.target.classList.add("show");
-            listOfRevealedCards.push(evt.target)
-            cardsRevealed += 1;
-        }
-    } else {
+    if (cardsRevealed >= 2) {
         listOfRevealedCards.forEach(function(card) {
             card.classList.remove("show");
         });
         listOfRevealedCards = [];
         cardsRevealed = 0;
     }
-
+    if (!evt.target.classList.contains("show")) {
+        evt.target.classList.add("show");
+        listOfRevealedCards.push(evt.target)
+        cardsRevealed += 1;
+    }
 });
 /*
  * set up the event listener for a card. If a card is clicked:
