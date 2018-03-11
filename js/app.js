@@ -61,7 +61,7 @@ let listOfRevealedCards = [];
 deck.addEventListener("click", function(evt) {
 
     if (!evt.target.classList.contains("show")) {
-        evt.target.classList.add("show");
+        evt.target.classList.add("show", "open", "flipInY");
         listOfRevealedCards.push(evt.target)
     }
 
@@ -70,15 +70,23 @@ deck.addEventListener("click", function(evt) {
         if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
             console.log("matched");
         } else {
-            listOfRevealedCards.forEach(function(card) {
-                card.classList.remove("show");
-            });
+            let [cardOne,cardTwo] = listOfRevealedCards;
+            setTimeout(function() {
+            	reHide(cardOne,cardTwo);
+            }, 1000);
         }
 
-        listOfRevealedCards = [];
+        listOfRevealedCards.length = 0;
     }
 
 });
+
+function reHide(...card) {
+	card.forEach(function(element){
+		element.classList.remove("show", "open", "flipInY");
+	});
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
