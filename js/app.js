@@ -57,20 +57,18 @@ function shuffle(array) {
     return array;
 }
 
-let cardsRevealed = 0;
 let listOfRevealedCards = [];
 deck.addEventListener("click", function(evt) {
-    if (cardsRevealed >= 2) {
+    if (listOfRevealedCards.length >= 2) {
         listOfRevealedCards.forEach(function(card) {
             card.classList.remove("show");
         });
         listOfRevealedCards = [];
-        cardsRevealed = 0;
     }
     if (!evt.target.classList.contains("show")) {
+    	console.log(evt.target.firstElementChild.classList.value);
         evt.target.classList.add("show");
         listOfRevealedCards.push(evt.target)
-        cardsRevealed += 1;
     }
 });
 /*
