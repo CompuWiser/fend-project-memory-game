@@ -2,9 +2,16 @@
  * Create a list that holds all of your cards
  */
 
-//class="fa fa-paper-plane-o" DELETE
 const deck = document.querySelector("ul.deck");
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
+
+
+/*
+ * Display the cards on the page
+ *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - loop through each card and create its HTML
+ *   - add each card's HTML to the page
+ */
 
 function createCardsList(arrayOfCardSymbols) {
 	shuffle(arrayOfCardSymbols);
@@ -14,7 +21,7 @@ function createCardsList(arrayOfCardSymbols) {
             let newAnchor = document.createElement("i");
             newAnchor.setAttribute("class", "fa fa-" + arrayOfCardSymbols[i]);
             let newElement = document.createElement("li");
-            newElement.setAttribute("class", "card show");
+            newElement.setAttribute("class", "card");
             newElement.appendChild(newAnchor);
             cardsList.push(newElement);
         }
@@ -29,18 +36,10 @@ function createAndAppend(cardsList, parent) {
         fragment.appendChild(card);
     });
     parent.appendChild(fragment);
-    console.log(parent);
 }
 
 createAndAppend(createCardsList(cardSymbols), deck);
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -59,6 +58,9 @@ function shuffle(array) {
 }
 
 
+deck.addEventListener("click", function(evt){
+	evt.target.classList.add("show");
+});
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
