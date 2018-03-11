@@ -14,7 +14,7 @@ let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube
  */
 
 function createCardsList(arrayOfCardSymbols) {
-	shuffle(arrayOfCardSymbols);
+    shuffle(arrayOfCardSymbols);
     let cardsList = [];
     for (let j = 0; j < 2; j++) {
         for (let i = 0; i < 8; i++) {
@@ -59,18 +59,20 @@ function shuffle(array) {
 
 let cardsRevealed = 0;
 let listOfRevealedCards = [];
-deck.addEventListener("click", function(evt){
-	if (cardsRevealed < 2) {
-		evt.target.classList.add("show");
-		listOfRevealedCards.push(evt.target)
-		cardsRevealed += 1;
-	} else {
-		listOfRevealedCards.forEach(function(card){
-			card.classList.remove("show");
-		});
-		listOfRevealedCards = [];
-		cardsRevealed = 0;
-	}
+deck.addEventListener("click", function(evt) {
+    if (cardsRevealed < 2) {
+        if (!evt.target.classList.contains("show")) {
+            evt.target.classList.add("show");
+            listOfRevealedCards.push(evt.target)
+            cardsRevealed += 1;
+        }
+    } else {
+        listOfRevealedCards.forEach(function(card) {
+            card.classList.remove("show");
+        });
+        listOfRevealedCards = [];
+        cardsRevealed = 0;
+    }
 
 });
 /*
