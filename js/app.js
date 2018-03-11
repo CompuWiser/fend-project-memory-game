@@ -2,6 +2,38 @@
  * Create a list that holds all of your cards
  */
 
+//class="fa fa-paper-plane-o" DELETE
+const deck = document.querySelector("ul.deck");
+let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
+
+function createCardsList(arrayOfCardSymbols) {
+	shuffle(arrayOfCardSymbols);
+    let cardsList = [];
+    for (let j = 0; j < 2; j++) {
+        for (let i = 0; i < 8; i++) {
+            let newAnchor = document.createElement("i");
+            newAnchor.setAttribute("class", "fa fa-" + arrayOfCardSymbols[i]);
+            let newElement = document.createElement("li");
+            newElement.setAttribute("class", "card show");
+            newElement.appendChild(newAnchor);
+            cardsList.push(newElement);
+        }
+    }
+
+    return shuffle(cardsList);
+}
+
+function createAndAppend(cardsList, parent) {
+    let fragment = document.createDocumentFragment();
+    cardsList.forEach(function(card) {
+        fragment.appendChild(card);
+    });
+    parent.appendChild(fragment);
+    console.log(parent);
+}
+
+createAndAppend(createCardsList(cardSymbols), deck);
+
 
 /*
  * Display the cards on the page
@@ -12,7 +44,8 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
