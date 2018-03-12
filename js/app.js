@@ -3,6 +3,8 @@
  */
 
 const deck = document.querySelector("ul.deck");
+const resetButton = document.querySelector("div.restart");
+
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
 
 
@@ -38,7 +40,7 @@ function createAndAppend(cardsList, parent) {
     parent.appendChild(fragment);
 }
 
-createAndAppend(createCardsList(cardSymbols), deck);
+
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -57,36 +59,50 @@ function shuffle(array) {
     return array;
 }
 
+startGame();
+
+resetButton.addEventListener("click", function(){
+	deck.innerHTML = "";
+
+	startGame();
+});
+
 let listOfRevealedCards = [];
 deck.addEventListener("click", function(evt) {
 
-    if (!evt.target.classList.contains("show")) {
-        evt.target.classList.add("show", "open", "flipInY");
-        listOfRevealedCards.push(evt.target)
-    }
+    if (listOfRevealedCards.length < 2) {
 
-    if (listOfRevealedCards.length == 2) {
-
-        if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
-            console.log("matched");
-        } else {
-            let [cardOne,cardTwo] = listOfRevealedCards;
-            setTimeout(function() {
-            	reHide(cardOne,cardTwo);
-            }, 1000);
+        if (!evt.target.classList.contains("show")) {
+            evt.target.classList.add("show", "open", "flipInY");
+            listOfRevealedCards.push(evt.target)
         }
 
-        listOfRevealedCards.length = 0;
-    }
+        if (listOfRevealedCards.length == 2) {
 
+            if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
+                console.log("matched");
+                listOfRevealedCards.length = 0;
+            } else {
+                let [cardOne, cardTwo] = listOfRevealedCards;
+                setTimeout(function() {
+                    reHide(cardOne, cardTwo);
+                }, 1000);
+            }
+
+        }
+    }
 });
 
 function reHide(...card) {
-	card.forEach(function(element){
-		element.classList.remove("show", "open", "flipInY");
-	});
+    card.forEach(function(element) {
+        element.classList.remove("show", "open", "flipInY");
+        listOfRevealedCards.length = 0;
+    });
 }
 
+function startGame() {
+	createAndAppend(createCardsList(cardSymbols), deck);
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
