@@ -4,6 +4,7 @@
 
 const deck = document.querySelector("ul.deck");
 const resetButton = document.querySelector("div.restart");
+let movesCounter = document.querySelector("span.moves");
 
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
 
@@ -63,7 +64,6 @@ startGame();
 
 resetButton.addEventListener("click", function(){
 	deck.innerHTML = "";
-
 	startGame();
 });
 
@@ -78,7 +78,7 @@ deck.addEventListener("click", function(evt) {
         }
 
         if (listOfRevealedCards.length == 2) {
-
+        	movesCounter.innerHTML++;
             if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
                 console.log("matched");
                 listOfRevealedCards.length = 0;
@@ -101,6 +101,7 @@ function reHide(...card) {
 }
 
 function startGame() {
+	movesCounter.innerHTML = 0;
 	createAndAppend(createCardsList(cardSymbols), deck);
 }
 /*
