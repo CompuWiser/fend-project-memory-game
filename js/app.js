@@ -78,9 +78,15 @@ resetButton.addEventListener("click", function(){
 
 
 let listOfRevealedCards = [];
+let numberOfMatches = 0;
+let timerStarted = false;
+
 deck.addEventListener("click", function(evt) {
 
-	if (timerDisplay.innerHTML == "00:00:00") timer.start();
+	if (!timerStarted) {
+		timer.start();
+		timerStarted = true;
+	}
 
     if (listOfRevealedCards.length < 2) {
 
@@ -92,7 +98,10 @@ deck.addEventListener("click", function(evt) {
         if (listOfRevealedCards.length == 2) {
         	movesCounter.innerHTML++;
             if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
-                console.log("matched");
+                evt.target.classList.add("match");
+                listOfRevealedCards[0].classList.add("match");
+                numberOfMatches++;
+                if (numberOfMatches == 8) matchComplete();
                 listOfRevealedCards.length = 0;
             } else {
                 let [cardOne, cardTwo] = listOfRevealedCards;
@@ -115,6 +124,10 @@ function reHide(...card) {
 function startGame() {
 	movesCounter.innerHTML = 0;
 	createAndAppend(createCardsList(cardSymbols), deck);
+}
+
+function matchComplete() {
+	timer.stop();
 }
 /*
  * set up the event listener for a card. If a card is clicked:
