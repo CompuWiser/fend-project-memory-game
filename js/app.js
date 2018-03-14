@@ -128,6 +128,30 @@ function startGame() {
 
 function matchComplete() {
 	timer.stop();
+	displayResults();
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var closeButton = document.querySelector(".close");
+
+// When the user clicks the button, open the modal 
+function displayResults() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+closeButton.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 /*
  * set up the event listener for a card. If a card is clicked:
