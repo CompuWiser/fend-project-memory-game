@@ -5,6 +5,7 @@
 const deck = document.querySelector("ul.deck");
 const resetButton = document.querySelector("div.restart");
 let movesCounter = document.querySelector("span.moves");
+let timerDisplay = document.querySelector("span.timer");
 
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
 
@@ -60,6 +61,12 @@ function shuffle(array) {
     return array;
 }
 
+var timer = new Timer();
+timer.addEventListener('secondsUpdated', function () {
+    //$('#basicUsage').html(timer.getTimeValues().toString());
+    timerDisplay.innerHTML = timer.getTimeValues().toString();
+});
+
 startGame();
 
 resetButton.addEventListener("click", function(){
@@ -67,8 +74,12 @@ resetButton.addEventListener("click", function(){
 	startGame();
 });
 
+
+
 let listOfRevealedCards = [];
 deck.addEventListener("click", function(evt) {
+
+	if (timerDisplay.innerHTML == "00:00:00") timer.start();
 
     if (listOfRevealedCards.length < 2) {
 
