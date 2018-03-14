@@ -63,7 +63,6 @@ function shuffle(array) {
 
 var timer = new Timer();
 timer.addEventListener('secondsUpdated', function () {
-    //$('#basicUsage').html(timer.getTimeValues().toString());
     timerDisplay.innerHTML = timer.getTimeValues().toString();
 });
 
@@ -71,6 +70,8 @@ startGame();
 
 resetButton.addEventListener("click", function(){
 	deck.innerHTML = "";
+	timer.stop();
+	timerDisplay.innerHTML = "00:00:00";
 	startGame();
 });
 
