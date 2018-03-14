@@ -132,7 +132,7 @@ function matchComplete() {
 }
 
 // Get the modal
-var modal = document.getElementById('myModal');
+var modal = document.querySelector('.modal');
 
 // Get the <span> element that closes the modal
 var closeButton = document.querySelector(".close");
