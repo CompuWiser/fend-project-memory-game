@@ -62,18 +62,25 @@ function shuffle(array) {
 }
 
 var timer = new Timer();
-timer.addEventListener('secondsUpdated', function () {
+timer.addEventListener('secondsUpdated', function() {
     timerDisplay.innerHTML = timer.getTimeValues().toString();
 });
 
 startGame();
 
-resetButton.addEventListener("click", function(){
-	deck.innerHTML = "";
-	timer.stop();
-	timerDisplay.innerHTML = "00:00:00";
-	startGame();
+resetButton.addEventListener("click", resetTheGame);
+
+document.querySelector(".modal-restart").addEventListener("click", function(){
+	modal.style.display = "none";
+	resetTheGame();
 });
+
+function resetTheGame() {
+    deck.innerHTML = "";
+    timer.stop();
+    timerDisplay.innerHTML = "00:00:00";
+    startGame();
+}
 
 
 
@@ -83,10 +90,10 @@ let timerStarted = false;
 
 deck.addEventListener("click", function(evt) {
 
-	if (!timerStarted) {
-		timer.start();
-		timerStarted = true;
-	}
+    if (!timerStarted) {
+        timer.start();
+        timerStarted = true;
+    }
 
     if (listOfRevealedCards.length < 2) {
 
@@ -96,7 +103,7 @@ deck.addEventListener("click", function(evt) {
         }
 
         if (listOfRevealedCards.length == 2) {
-        	movesCounter.innerHTML++;
+            movesCounter.innerHTML++;
             if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
                 evt.target.classList.add("match");
                 listOfRevealedCards[0].classList.add("match");
@@ -122,13 +129,13 @@ function reHide(...card) {
 }
 
 function startGame() {
-	movesCounter.innerHTML = 0;
-	createAndAppend(createCardsList(cardSymbols), deck);
+    movesCounter.innerHTML = 0;
+    createAndAppend(createCardsList(cardSymbols), deck);
 }
 
 function matchComplete() {
-	timer.stop();
-	displayResults();
+    timer.stop();
+    displayResults();
 }
 
 // Get the modal
