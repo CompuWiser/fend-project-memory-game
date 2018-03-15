@@ -146,6 +146,8 @@ var closeButton = document.querySelector(".close");
 
 // When the user clicks the button, open the modal 
 function displayResults() {
+	document.querySelector(".modal-moves").innerHTML = movesCounter.innerHTML;
+	document.querySelector(".modal-time").innerHTML = timerDisplay.innerHTML;
     modal.style.display = "block";
 }
 
