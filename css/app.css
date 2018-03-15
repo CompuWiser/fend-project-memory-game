@@ -28,11 +28,6 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
 /*
  * Styles for the deck of cards
  */
@@ -99,7 +94,8 @@ h1 {
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.score-panel .stars li,
+.modal-content li {
     list-style: none;
     display: inline-block;
 }
@@ -117,7 +113,7 @@ h1 {
 
 /* The Modal (background) */
 .modal {
-    display: none;
+    /*display: none;*/
     position: fixed;
     z-index: 1;
     padding-top: 100px;
@@ -136,6 +132,24 @@ h1 {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    text-align: center;
+}
+
+.modal-content ul {
+    padding: 0;
+}
+
+.modal-content button {
+    background-color: inherit;
+    font-size: 1.3em;
+    padding: 5px 15px;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.modal-content .fa-star {
+    font-size: 2em;
 }
 
 /* The Close Button */
