@@ -6,8 +6,7 @@ const deck = document.querySelector("ul.deck");
 const resetButton = document.querySelector("div.restart");
 let movesCounter = document.querySelector("span.moves");
 let timerDisplay = document.querySelector("span.timer");
-let panelStars = document.querySelector(".score-panel .stars");
-let modalStars = document.querySelector(".modal-stars");
+
 
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
 
@@ -49,7 +48,7 @@ function createAndAppend(cardsList, parent) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
         temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -63,7 +62,7 @@ function shuffle(array) {
     return array;
 }
 
-var timer = new Timer();
+const timer = new Timer();
 timer.addEventListener('secondsUpdated', function() {
     timerDisplay.innerHTML = timer.getTimeValues().toString();
 });
@@ -150,16 +149,16 @@ function matchComplete() {
     displayResults();
 }
 
-// Get the modal
-var modal = document.querySelector('.modal');
 
-// Get the <span> element that closes the modal
-var closeButton = document.querySelector(".close");
+const modal = document.querySelector('.modal');
+const closeButton = document.querySelector(".close");
+const modalMoves = document.querySelector(".modal-moves");
+const modalTime = document.querySelector(".modal-time");
 
 // When the user clicks the button, open the modal 
 function displayResults() {
-    document.querySelector(".modal-moves").innerHTML = movesCounter.innerHTML;
-    document.querySelector(".modal-time").innerHTML = timerDisplay.innerHTML;
+    modalMoves.innerHTML = movesCounter.innerHTML;
+    modalTime.innerHTML = timerDisplay.innerHTML;
     modal.style.display = "block";
 }
 
@@ -175,24 +174,28 @@ window.onclick = function(event) {
     }
 }
 
-function setStarsRating(numOfStars, starClass, ...elements) {
-    elements.forEach(function(element) {
+
+let panelStars = document.querySelector(".score-panel .stars");
+let modalStars = document.querySelector(".modal-stars");
+
+function manipulateStarClassesFromBackToFront(numOfStarsToKeep, starClassToApply, ...elementsToApplyOn) {
+    elementsToApplyOn.forEach(function(element) {
         let starElement = element.querySelectorAll("li");
         let starElementKeys = Object.keys(starElement);
 
-        for (let i = 3; i > numOfStars; i--) {
+        for (let i = 3; i > numOfStarsToKeep; i--) {
             let key = starElementKeys[i - 1];
-            starElement[key].firstElementChild.classList = starClass;
+            starElement[key].firstElementChild.classList = starClassToApply;
         }
     });
 }
 
 function setStarsOnPage(n) {
-    setStarsRating(n, "fa fa-star-o", panelStars, modalStars);
+    manipulateStarClassesFromBackToFront(n, "fa fa-star-o", panelStars, modalStars);
 }
 
 function resetStars(){
-	setStarsRating(0, "fa fa-star", panelStars, modalStars);
+	manipulateStarClassesFromBackToFront(0, "fa fa-star", panelStars, modalStars);
 }
 
 
