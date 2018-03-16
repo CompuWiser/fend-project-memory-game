@@ -6,6 +6,8 @@ const deck = document.querySelector("ul.deck");
 const resetButton = document.querySelector("div.restart");
 let movesCounter = document.querySelector("span.moves");
 let timerDisplay = document.querySelector("span.timer");
+let panelStars = document.querySelector(".score-panel .stars");
+let modalStars = document.querySelector(".modal-stars");
 
 let cardSymbols = ["repeat", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "university", "coffee", "eye", "gamepad", "gift"];
 
@@ -70,9 +72,9 @@ startGame();
 
 resetButton.addEventListener("click", resetTheGame);
 
-document.querySelector(".modal-restart").addEventListener("click", function(){
-	modal.style.display = "none";
-	resetTheGame();
+document.querySelector(".modal-restart").addEventListener("click", function() {
+    modal.style.display = "none";
+    resetTheGame();
 });
 
 function resetTheGame() {
@@ -146,8 +148,8 @@ var closeButton = document.querySelector(".close");
 
 // When the user clicks the button, open the modal 
 function displayResults() {
-	document.querySelector(".modal-moves").innerHTML = movesCounter.innerHTML;
-	document.querySelector(".modal-time").innerHTML = timerDisplay.innerHTML;
+    document.querySelector(".modal-moves").innerHTML = movesCounter.innerHTML;
+    document.querySelector(".modal-time").innerHTML = timerDisplay.innerHTML;
     modal.style.display = "block";
 }
 
@@ -162,6 +164,24 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function setStarsRating(numOfStars, ...elements) {
+    elements.forEach(function(element) {
+        let starElement = element.querySelectorAll("li");
+        console.log(starElement);
+
+        let starElementKeys = Object.keys(starElement);
+        console.log(starElementKeys);
+
+        for (let i = 3; i > numOfStars; i--) {
+            let key = starElementKeys[i - 1];
+            console.log(key)
+            starElement[key].firstElementChild.classList = "fa fa-star-o";
+        }
+    });
+}
+
+setStarsRating(2, panelStars, modalStars)
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)

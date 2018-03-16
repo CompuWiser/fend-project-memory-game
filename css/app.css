@@ -152,6 +152,11 @@ body {
     font-size: 2em;
 }
 
+.modal-content .fa-star-o {
+    font-size: 1.8em;
+}
+
+
 /* The Close Button */
 .close {
     color: #aaaaaa;
