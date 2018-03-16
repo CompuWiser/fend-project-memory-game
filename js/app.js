@@ -181,7 +181,11 @@ function setStarsRating(numOfStars, ...elements) {
     });
 }
 
-setStarsRating(2, panelStars, modalStars)
+function setStarsOnPage(n) {
+    setStarsRating(n, panelStars, modalStars);
+}
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
