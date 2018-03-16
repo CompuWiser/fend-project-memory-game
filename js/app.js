@@ -81,6 +81,7 @@ function resetTheGame() {
     deck.innerHTML = "";
     timer.stop();
     timerDisplay.innerHTML = "00:00:00";
+    resetStars();
     startGame();
 }
 
@@ -174,20 +175,24 @@ window.onclick = function(event) {
     }
 }
 
-function setStarsRating(numOfStars, ...elements) {
+function setStarsRating(numOfStars, starClass, ...elements) {
     elements.forEach(function(element) {
         let starElement = element.querySelectorAll("li");
         let starElementKeys = Object.keys(starElement);
 
         for (let i = 3; i > numOfStars; i--) {
             let key = starElementKeys[i - 1];
-            starElement[key].firstElementChild.classList = "fa fa-star-o";
+            starElement[key].firstElementChild.classList = starClass;
         }
     });
 }
 
 function setStarsOnPage(n) {
-    setStarsRating(n, panelStars, modalStars);
+    setStarsRating(n, "fa fa-star-o", panelStars, modalStars);
+}
+
+function resetStars(){
+	setStarsRating(0, "fa fa-star", panelStars, modalStars);
 }
 
 
