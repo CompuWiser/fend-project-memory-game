@@ -111,6 +111,10 @@ body {
     cursor: pointer;
 }
 
+.fa {
+    font-size: 1.4em;
+}
+
 /* The Modal (background) */
 .modal {
     display: none;
@@ -170,4 +174,40 @@ body {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    header h1 {
+        margin: 15px auto;
+    }
+
+    .deck {
+        padding: 16px;
+        width: 100%;
+        min-height: 392px;
+        border-radius: 0;
+    }
+
+    .deck .card {
+        width: 23%;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .fa {
+        font-size: 1em;
+    }
+
+    .score-panel {
+        width: 100%;
+        margin-bottom: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .score-panel .timer {
+        margin-right: 1em;
+    }
 }
