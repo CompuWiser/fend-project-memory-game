@@ -97,6 +97,8 @@ deck.addEventListener("click", function(evt) {
         timerStarted = true;
     }
 
+
+
     if (listOfRevealedCards.length < 2) {
 
         if (!evt.target.classList.contains("show")) {
@@ -106,6 +108,13 @@ deck.addEventListener("click", function(evt) {
 
         if (listOfRevealedCards.length == 2) {
             movesCounter.innerHTML++;
+
+            if (movesCounter.innerHTML == 12) {
+                setStarsOnPage(2);
+            } else if (movesCounter.innerHTML == 20) {
+                setStarsOnPage(1);
+            }
+
             if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
                 evt.target.classList.add("match");
                 listOfRevealedCards[0].classList.add("match");
@@ -168,14 +177,10 @@ window.onclick = function(event) {
 function setStarsRating(numOfStars, ...elements) {
     elements.forEach(function(element) {
         let starElement = element.querySelectorAll("li");
-        console.log(starElement);
-
         let starElementKeys = Object.keys(starElement);
-        console.log(starElementKeys);
 
         for (let i = 3; i > numOfStars; i--) {
             let key = starElementKeys[i - 1];
-            console.log(key)
             starElement[key].firstElementChild.classList = "fa fa-star-o";
         }
     });
