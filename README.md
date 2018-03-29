@@ -2,19 +2,29 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [About](#About)
+* [Screenshots](#Screenshots)
+* [Instructions](#Instructions)
+
+## About
+
+* This Project is made as a part of Udacity's Front-End Development Nanodegree.
+* This is a Card-matching game as provided in the screenshot
+
+## Screenshots
+
+![Alt](img/screenshot.jpg)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+* The game starts automatically upon page load.
+* Click a card to reveal it
+* The goal is to reveal cards two at a time to match the pairs.
+* The game ends when all of the 8 pairs are revealed.
+* The game has no time limit
 
-To get started, open `js/app.js` and start building out the app's functionality
+### Scoring
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+3 stars = 12 moves or less  
+2 stars = 20 moves or less  
+1 star = more than 20 moves
