@@ -79,6 +79,7 @@ function resetTheGame() {
 	modal.style.display = 'none';
     deck.innerHTML = '';
     timer.stop();
+    timerStarted = false;
     timerDisplay.innerHTML = '00:00:00';
     resetStars();
     initializeDeckOfCards();
