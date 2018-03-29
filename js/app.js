@@ -100,7 +100,7 @@ deck.addEventListener('click', function(evt) {
     if (listOfRevealedCards.length < 2) {
 
     	//only reveal un-revealed cards
-        if (!evt.target.classList.contains('show')) {
+        if (!evt.target.classList.contains('show') && evt.target.computedRole == "listitem") {
             evt.target.classList.add('show', 'open', 'flipInY');
             listOfRevealedCards.push(evt.target)
         }
@@ -117,6 +117,7 @@ deck.addEventListener('click', function(evt) {
             }
 
             //if there is a match
+            console.log(listOfRevealedCards);
             if (listOfRevealedCards[0].firstElementChild.classList.value === listOfRevealedCards[1].firstElementChild.classList.value) {
                 evt.target.classList.add('match');
                 listOfRevealedCards[0].classList.add('match');
